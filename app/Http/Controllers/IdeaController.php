@@ -4,82 +4,86 @@ namespace App\Http\Controllers;
 
 //models
 use App\User;
-use App\Example;
+use App\Idea;
 //laravel request object.  Allows us to parse the data as it comes in.
 use Illuminate\Http\Request;
 //gets the controller class of laravel to extend controller off of that class.
 use App\Http\Controllers\Controller;
 
-class ExampleController extends Controller
+class IdeaController extends Controller
 {
     /**
-     * Get all examples
+     * Get all ideas
      *
      * @return JSON Response
      */
     public function index()
     {
-      $examples = Example::all();
+      $ideas = Idea::all();
 
-      return response()->json($examples);
+      return response()->json($ideas);
     }
 
     /**
-     * Show single example by ID.
+     * Show single idea by ID.
      *
      * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
-      $example = Example::find($id);
-      return response()->json($example);
+      $idea = Idea::find($id);
+      return response()->json($idea);
     }
 
     /**
-     * Creates single example.
+     * Creates single idea.
      *
      * @return Response
      */
     public function store(Request $request)
     {
-      $example = new Example;
+      $idea = new Idea;
 
-      $example->title = $request->title;
-      $example->body = $request->body;
+      $idea->title = $request->title;
+      $idea->description = $request->description;
+      $idea->completed = $request->completed;
 
-      $example->save();
+      $idea->save();
     }
 
     /**
-     * Update single example by ID.
+     * Update single idea by ID.
      *
      * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-      $example = Example::find($id);
+      $idea = Idea::find($id);
 
       if($request->title) {
-        $example->title = $request->title;
+        $idea->title = $request->title;
       }
 
-      if($request->body) {
-        $example->body = $request->body;
+      if($request->description) {
+        $idea->description = $request->description;
+      }
+      if($request->completed) {
+        $idea->completed = $request->completed;
       }
 
-      $example->save();
+      $idea->save();
     }
 
     /**
-     * Destroy single example by ID.
+     * Destroy single idea by ID.
      *
      * @param  int  $id
      * @return Response
      */
     public function destroy($id)
     {
-      Example::destroy($id);
+      Idea::destroy($id);
     }
 }

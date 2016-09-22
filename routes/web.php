@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 // Route::get('/examples', 'ExampleController@index');
 // Route::get('/examples/{id}', 'ExampleController@show');
-
+Route::resource('ideas', 'IdeaController');
 Route::resource('examples', 'ExampleController');
+Route::resource('stories', 'StoryController');

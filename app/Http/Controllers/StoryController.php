@@ -4,82 +4,82 @@ namespace App\Http\Controllers;
 
 //models
 use App\User;
-use App\Example;
+use App\Story;
 //laravel request object.  Allows us to parse the data as it comes in.
 use Illuminate\Http\Request;
 //gets the controller class of laravel to extend controller off of that class.
 use App\Http\Controllers\Controller;
 
-class ExampleController extends Controller
+class StoryController extends Controller
 {
     /**
-     * Get all examples
+     * Get all storys
      *
      * @return JSON Response
      */
     public function index()
     {
-      $examples = Example::all();
+      $storys = Story::all();
 
-      return response()->json($examples);
+      return response()->json($storys);
     }
 
     /**
-     * Show single example by ID.
+     * Show single story by ID.
      *
      * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
-      $example = Example::find($id);
-      return response()->json($example);
+      $story = Story::find($id);
+      return response()->json($story);
     }
 
     /**
-     * Creates single example.
+     * Creates single story.
      *
      * @return Response
      */
     public function store(Request $request)
     {
-      $example = new Example;
+      $story = new Story;
 
-      $example->title = $request->title;
-      $example->body = $request->body;
+      $story->title = $request->title;
+      $story->body = $request->body;
 
-      $example->save();
+      $story->save();
     }
 
     /**
-     * Update single example by ID.
+     * Update single story by ID.
      *
      * @param  int  $id
      * @return Response
      */
     public function update(Request $request, $id)
     {
-      $example = Example::find($id);
+      $story = Story::find($id);
 
       if($request->title) {
-        $example->title = $request->title;
+        $story->description = $request->description;
       }
 
       if($request->body) {
-        $example->body = $request->body;
+        $story->body = $request->body;
       }
 
-      $example->save();
+      $story->save();
     }
 
     /**
-     * Destroy single example by ID.
+     * Destroy single story by ID.
      *
      * @param  int  $id
      * @return Response
      */
     public function destroy($id)
     {
-      Example::destroy($id);
+      Story::destroy($id);
     }
 }
